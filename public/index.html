@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMSE Faculty – Information Sharing</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚗️</span>
+        <div>
+          <h1>BMSE Faculty</h1>
+          <p>Biomedical &amp; Materials Science Engineering – Information Sharing</p>
+        </div>
+      </div>
+      <nav class="header-actions">
+        <button class="btn btn-primary" id="openNewPostBtn">+ New Post</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Main ── -->
+  <main class="container main-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul class="category-list" id="categoryList">
+        <li class="active" data-cat="All">All</li>
+        <li data-cat="Announcement">Announcement</li>
+        <li data-cat="Research">Research</li>
+        <li data-cat="Teaching">Teaching</li>
+        <li data-cat="Conference">Conference</li>
+        <li data-cat="Resource">Resource</li>
+        <li data-cat="General">General</li>
+      </ul>
+
+      <h3 style="margin-top:2rem;">Search</h3>
+      <input type="text" id="searchInput" class="input" placeholder="Search posts…" />
+
+      <div class="stats-box" id="statsBox"></div>
+    </aside>
+
+    <!-- Feed -->
+    <section class="feed">
+      <div id="postList" class="post-list"></div>
+      <div id="emptyMsg" class="empty-msg" hidden>No posts yet. Be the first to share!</div>
+    </section>
+  </main>
+
+  <!-- ── New Post Modal ── -->
+  <div class="modal-backdrop" id="newPostModal" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Create New Post</h2>
+        <button class="modal-close" id="closeNewPost">×</button>
+      </div>
+      <form id="newPostForm" enctype="multipart/form-data">
+        <label>Title *
+          <input type="text" name="title" class="input" required placeholder="Post title" />
+        </label>
+        <label>Author *
+          <input type="text" name="author" class="input" required placeholder="Your name" />
+        </label>
+        <label>Category
+          <select name="category" class="input">
+            <option value="General">General</option>
+            <option value="Announcement">Announcement</option>
+            <option value="Research">Research</option>
+            <option value="Teaching">Teaching</option>
+            <option value="Conference">Conference</option>
+            <option value="Resource">Resource</option>
+          </select>
+        </label>
+        <label>Content *
+          <textarea name="content" class="input" rows="6" required placeholder="Write your post content here…"></textarea>
+        </label>
+        <label>Attachments
+          <div class="file-drop" id="fileDrop">
+            <span>Drag &amp; drop files here, or click to select</span>
+            <input type="file" name="files" id="fileInput" multiple hidden />
+          </div>
+          <div id="filePreview" class="file-preview"></div>
+        </label>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="cancelNewPost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Post Detail Modal ── -->
+  <div class="modal-backdrop" id="postDetailModal" hidden>
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <div>
+          <span class="badge" id="detailCategory"></span>
+          <h2 id="detailTitle"></h2>
+        </div>
+        <button class="modal-close" id="closeDetail">×</button>
+      </div>
+      <div class="detail-meta" id="detailMeta"></div>
+      <div class="detail-content" id="detailContent"></div>
+
+      <!-- Attachments -->
+      <div id="detailFiles" class="detail-files"></div>
+
+      <!-- Comments -->
+      <section class="comments-section">
+        <h3>Comments <span class="comment-count" id="commentCount"></span></h3>
+        <div id="commentList" class="comment-list"></div>
+
+        <form id="commentForm" class="comment-form">
+          <input type="text" id="commentAuthor" class="input" placeholder="Your name" required />
+          <textarea id="commentContent" class="input" rows="3" placeholder="Write a comment…" required></textarea>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
